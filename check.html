@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    
+        button {
+            margin:10px 10px;
+            padding: 0;
+            width:100px;
+            height:50px;
+        }
+
+       
+        input {
+            margin-left:10px;
+        }
+
+        select {
+            margin-left:10px;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <!-- 表单选择属性 单选必须有 name 属性 -->
+    <button>按钮1</button>
+    <button>按钮2</button><br><br>
+                                                    <!-- 单选 radio -->
+    <input type="radio" name="school" >高中
+    <input type="radio" name="school" >大学<br><br>
+                                                    <!--  下拉菜单 select   -->
+    <select name="zhonglei" id="">
+        <option value="">理科</option>
+        <option value="">文科</option>
+        <option value="">体育</option>
+        <option value="">玩</option>
+    </select><br><br>
+
+    科目： 
+                                                    <!-- 多选 checkbox -->
+        <input type="checkbox">数学           
+        <input type="checkbox">马克思
+        <input type="checkbox">语文
+        <input type="checkbox">高数
+        <input type="checkbox">化学
+        <input type="checkbox">思修
+        <input type="checkbox">物理
+        <br><br>
+
+    上课时间：
+                                                      <!-- 全选/反选 -->
+
+        <input type="checkbox" id= "checkbox">全选/反选  
+        <br><br>
+        <input type="checkbox">周一           
+        <input type="checkbox">周二
+        <input type="checkbox">周三
+        <input type="checkbox">周四
+        <input type="checkbox">周五
+        <input type="checkbox">周六
+        <input type="checkbox">周日
+    
+    
+        <script>
+            var btnArr = document.getElementsByTagName("button");
+            var inpArr = document.getElementsByTagName("input");
+            var optArr = document.getElementsByTagName("option");
+
+            btnArr[0].onclick = function(){
+                for(i = 0;i<inpArr.length;i++){                 //干掉所有；重新设置；排他思想
+                    inpArr[i].checked = false;
+                };
+                inpArr[0].checked = true;
+                optArr[3].selected = true;          // selected 下拉菜单属性
+                inpArr[2].checked = true;
+                inpArr[4].checked = true;
+                inpArr[6].checked = true;
+                inpArr[8].checked = true;
+            };
+            btnArr[1].onclick = function(){
+                for(i = 0;i<inpArr.length;i++){
+                    inpArr[i].checked = false;
+                };
+                inpArr[1].checked = true;
+                optArr[2].selected = true;
+                inpArr[3].checked = true;
+                inpArr[5].checked = true;
+                inpArr[7].checked = true;
+                
+            }
+
+            inpArr[9].onclick = function(){
+                for(i=10;i<17;i++){
+                    inpArr[i].checked = inpArr[9].checked;
+                    
+                }
+                
+            }
+
+            for(i=10;i<17;i++){
+                inpArr[i].onclick = function(){
+                     var bool =true;
+                     for(j=10;j<17;j++){
+                        if(inpArr[j].checked === false){     //有一个选中都不全选
+                            bool = false
+                        }
+                     }
+                     inpArr[9].checked = bool;
+                     
+                }
+            }
+           
+        </script>
+</body>
+</html>

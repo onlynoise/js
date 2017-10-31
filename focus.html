@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+
+        input {
+            margin: 0 ;
+            padding: 0 0 0 8px ;
+            margin-top:10px;
+            margin-left: 10px;
+            width: 200px;
+            height:35px;
+            outline:#474545;
+        }
+
+        label {
+            position: absolute;
+            top:76px;
+            left:86px;
+            cursor: text;
+        }
+
+    
+        .hide {
+            display: none;
+        }
+        i {
+            font-style:normal;
+            color: #474545;
+            margin-left:10px;
+        }
+        .wrong {
+            color:red;
+        }
+        .right {
+            color:green;
+        }
+    </style>
+</head>
+<body>
+    <script>
+
+        window.onload = function () {
+        //需求1：第一个input获取焦点value清空，失去焦点设置value；
+        //需求2：第二个input输入内容，隐藏label，内容为空显示label;
+        //需求3：账号密码验证
+            var inpArr = document.getElementsByTagName("input");
+
+            var label = document.getElementsByTagName("label")[0];
+
+            var iArr = document.querySelectorAll("i");
+            // 获取焦点
+            inpArr[0].onfocus = function(){         
+                if(this.value=="lalala"){       //如何能保留在 对话框是 lalala 时 可以在字的后面直接添加内容 lalala123 
+                    this.value = ""
+                }
+                
+            }
+            // 失去焦点
+            inpArr[0].onblur = function(){
+                if(this.value ==""){
+                    this.value = "lalala"
+                }
+                
+            }
+            // oninput 文本输入时获取焦点
+            inpArr[1].oninput = inpArr[1].onpropertychange =function(){ 
+
+                if(this.value==""){
+                    label.className = "";
+                }else{
+                    label.className = "hide";
+                }
+                
+            }
+
+            inpArr[3].onblur = function(){
+
+                if(this.value.length>4 & this.value.length<20 ){
+                    this.style.border = " 1px solid green";
+                    iArr[0].className = "right";
+                    iArr[0].innerHTML = "输入正确";
+                }else {
+                    this.style.border = " 1px solid red";
+                    iArr[0].className = "wrong";
+                    iArr[0].innerHTML = "账号必须是4-20位";
+                }
+                
+            }
+            inpArr[4].onblur = function(){
+
+                if(this.value.length>4 & this.value.length<20){
+                    this.style.border = " 1px solid green";
+                    iArr[1].className = "right";
+                    iArr[1].innerHTML = "输入正确";
+                }else {
+                    this.style.border = " 1px solid red";
+                    iArr[1].className = "wrong";
+                    iArr[1].innerHTML = "密码必须是4-20位";
+                }
+            }
+
+
+        }
+    </script>
+
+    淘宝：<input type="text" value = "lalala" ><br/>
+    京东：<label for ="inp2">bbb</label>
+          <input type="text" id="inp2"><br/> 
+          <!--  placeholder 兼容问题 IE678不支持 谷歌显示向淘宝，ie9+显示向京东-->
+    placeholder：<input type="text" placeholder="123"><br/>  
+
+    账户名：<input type="text"><i>请输入账户名</i><br/>
+    密　码：<input type="password"><i>请输入密码</i>
+</body>
+</html>
+
