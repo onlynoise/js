@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		
+		.success {
+			color:green;
+		}
+		.wrong {
+			color:red;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		账户名：<input type="text" id="username"><span class="success"></span>
+		<br>
+		密　码：<input type="password" name=""><span></span>
+		<button>注册</button>
+	</div>
+	
+	<script type="text/javascript">
+		
+		var username = document.querySelector("#username");
+		
+		var span = document.querySelector("span");
+		var btn = document.querySelector("button");
+
+		username.addEventListener('blur',function(){
+			var xhr = new XMLHttpRequest;
+			xhr.open('get','./check.php?name='+username.value);
+			xhr.send();
+
+			xhr.onreadystateChange = function(){
+				if(xhr.readyState ===4){
+					if(xhr.responseText =="用户已存在"){
+						span.className = "wrong"
+					}else {
+						span.className = "success"
+					}
+					span.innerHTML = xhr.responseText;
+				}
+			}
+		})
+
+// 		状态码：200 success
+
+// 304 文档未修改
+
+// 403没有权限
+
+// 404未找到
+
+// 500服务器错误
+	</script>
+	
+</body>
+</html>
