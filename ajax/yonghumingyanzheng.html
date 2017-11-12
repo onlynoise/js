@@ -17,7 +17,7 @@
 	<div>
 		账户名：<input type="text" id="username"><span class="success"></span>
 		<br>
-		密　码：<input type="password" name=""><span></span>
+		密　码：<input type="password" name="">
 		<button>注册</button>
 	</div>
 	
@@ -33,7 +33,7 @@
 			xhr.open('get','./check.php?name='+username.value);
 			xhr.send();
 
-			xhr.onreadystateChange = function(){
+			xhr.onreadystatechange = function(){
 				if(xhr.readyState ===4){
 					if(xhr.responseText =="用户已存在"){
 						span.className = "wrong"
