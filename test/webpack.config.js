@@ -39,6 +39,19 @@ module.exports = {
             {
                 test: /\.(jpg|png|jpeg|gif|ttf|woff|woff2|eot|svg)$/,
                 use: 'url-loader'
+            },
+            // babel-loader  用于把 es6语法  转为 es5
+            // npm install babel-loader babel-core babel-preset-env webpack   安装此行内容
+            {
+                test: /\.js$/,
+                exclude: /(node_modules|bower_components)/,
+                // include: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['env']
+                    }
+                }
             }
         ]
     },
